@@ -9,8 +9,10 @@
 import routes from '@/router/routes.ts'
 import { useRouter } from 'vue-router'
 import { ref } from 'vue'
+import useUserStore from '@/store/user.ts'
 
 const router = useRouter()
+const userStore = useUserStore()
 
 const selectedKeys = ref(['/'])
 
@@ -28,26 +30,33 @@ const handleMenuClick = ({ key }) => {
 
 <template>
   <div class="global-header">
-    <div class="logo-container">
-      <img class="logo" src="../../assets/images/header-logo.jpeg" alt="Logo" />
-    </div>
-    <div class="menu-container">
-      <a-menu
-        mode="horizontal"
-        :selected-keys="selectedKeys"
-        @click="handleMenuClick"
-      >
-        <template v-for="route in routes">
-          <a-menu-item
-            v-if="route.name !== 'ROOT'"
-            :key="route.path"
-            class="menu-item"
+    <a-row style="height: 64px">
+      <a-col flex="150px" :wrap="false">
+        <img
+          class="logo"
+          src="../../assets/images/header-logo.jpeg"
+          alt="Logo"
+        />
+      </a-col>
+      <a-col flex="auto" :wrap="false">
+        <div class="menu-container">
+          <a-menu
+            mode="horizontal"
+            :selected-keys="selectedKeys"
+            @click="handleMenuClick"
           >
-            {{ route.name }}
-          </a-menu-item>
-        </template>
-      </a-menu>
-    </div>
+            <template v-for="route in routes">
+              <a-menu-item v-if="route.name !== 'ROOT'" :key="route.path">
+                {{ route.name }}
+              </a-menu-item>
+            </template>
+          </a-menu>
+        </div>
+      </a-col>
+      <a-col flex="100px" :wrap="false"
+        >{{ userStore.loginUser?.username ?? '未登录' }}
+      </a-col>
+    </a-row>
   </div>
 </template>
 
@@ -55,27 +64,16 @@ const handleMenuClick = ({ key }) => {
 .global-header {
   height: 64px;
   background-color: #fff;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  z-index: 1000;
   padding: 0 24px;
-  display: flex;
-  align-items: center;
+  position: relative;
 
-  .logo-container {
-    flex-shrink: 0;
-    padding-right: 48px;
-    display: flex;
-    align-items: center;
-
-    .logo {
-      height: 40px;
-      width: auto;
-      display: block;
-    }
+  .logo {
+    position: absolute;
+    height: 100%;
+    width: 100%;
   }
 
   .menu-container {
@@ -87,7 +85,6 @@ const handleMenuClick = ({ key }) => {
       padding: 0 20px;
       font-size: 20px;
       margin: 0 4px;
-      transition: all 0.3s;
     }
   }
 }
