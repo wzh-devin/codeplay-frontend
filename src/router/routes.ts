@@ -11,17 +11,17 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
     name: 'ROOT',
-    redirect: '/home'
+    redirect: '/view-topic'
   },
   {
-    path: '/home',
-    name: 'Home',
-    component: () => import('@/views/home/Home.vue')
+    path: '/view-topic',
+    name: 'ViewTopic',
+    component: () => import('@/views/topic/ViewTopic.vue')
   },
   {
     path: '/about',
     name: 'About',
-    component: () => import('@/views/home/About.vue')
+    component: () => import('@/views/topic/About.vue')
   }
 ]
 

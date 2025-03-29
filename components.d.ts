@@ -21,7 +21,7 @@ declare module 'vue' {
     ASpace: typeof import('ant-design-vue/es')['Space']
     BasicLayout: typeof import('./src/layouts/BasicLayout.vue')['default']
     GlobalHeader: typeof import('./src/components/global/GlobalHeader.vue')['default']
-    Home: typeof import('./src/views/home/Home.vue')['default']
+    Home: typeof import('./src/views/topic/ViewTopic.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }
