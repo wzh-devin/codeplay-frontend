@@ -6,10 +6,10 @@
  * @version 1.0
  * @since 1.0
  */
-import routes from '@/router/routes.ts'
+import routes from '../../router/routes.ts'
 import { useRouter } from 'vue-router'
 import { ref } from 'vue'
-import useUserStore from '@/store/user.ts'
+import useUserStore from '../../store/user.ts'
 
 const router = useRouter()
 const userStore = useUserStore()
@@ -21,7 +21,7 @@ router.afterEach((to) => {
   selectedKeys.value = [to.path]
 })
 
-const handleMenuClick = ({ key }) => {
+const handleMenuClick = ({ key }: { key: string }) => {
   router.push({
     path: key
   })
