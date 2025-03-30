@@ -11,6 +11,7 @@ interface IUserState {
   loginUser: {
     username: string
     password: string
+    role: string
   }
 }
 
@@ -18,7 +19,8 @@ const useUserStore = defineStore('user', {
   state: (): IUserState => ({
     loginUser: {
       username: '未登录',
-      password: ''
+      password: '',
+      role: 'admin'
     }
   }),
   actions: {}

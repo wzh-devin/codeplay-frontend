@@ -46,7 +46,7 @@ const handleMenuClick = ({ key }: { key: string }) => {
             @click="handleMenuClick"
           >
             <template v-for="route in routes">
-              <a-menu-item v-if="route.name !== 'ROOT'" :key="route.path">
+              <a-menu-item v-if="route.meta?.isShow ?? true" :key="route.path">
                 {{ route.name }}
               </a-menu-item>
             </template>
