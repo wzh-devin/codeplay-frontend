@@ -26,6 +26,11 @@ const handleMenuClick = ({ key }: { key: string }) => {
     path: key
   })
 }
+
+// 需要展示的菜单
+const visibleMenus = routes.filter((route) => {
+  return route.meta?.isShow ?? true
+})
 </script>
 
 <template>
@@ -45,8 +50,8 @@ const handleMenuClick = ({ key }: { key: string }) => {
                 alt="Logo"
               />
             </a-menu-item>
-            <template v-for="route in routes">
-              <a-menu-item v-if="route.meta?.isShow ?? true" :key="route.path">
+            <template v-for="route in visibleMenus" :key="route.path">
+              <a-menu-item>
                 {{ route.name }}
               </a-menu-item>
             </template>
