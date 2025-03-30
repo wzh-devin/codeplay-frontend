@@ -30,21 +30,21 @@ const handleMenuClick = ({ key }: { key: string }) => {
 
 <template>
   <div class="global-header">
-    <a-row style="height: 64px">
-      <a-col flex="150px" :wrap="false">
-        <img
-          class="logo"
-          src="../../assets/images/header-logo.jpeg"
-          alt="Logo"
-        />
-      </a-col>
-      <a-col flex="auto" :wrap="false">
+    <a-row style="height: 64px" :wrap="false">
+      <a-col flex="auto">
         <div class="menu-container">
           <a-menu
             mode="horizontal"
             :selected-keys="selectedKeys"
             @click="handleMenuClick"
           >
+            <a-menu-item :key="0">
+              <img
+                class="logo"
+                src="../../assets/images/header-logo.jpeg"
+                alt="Logo"
+              />
+            </a-menu-item>
             <template v-for="route in routes">
               <a-menu-item v-if="route.meta?.isShow ?? true" :key="route.path">
                 {{ route.name }}
@@ -53,7 +53,7 @@ const handleMenuClick = ({ key }: { key: string }) => {
           </a-menu>
         </div>
       </a-col>
-      <a-col flex="100px" :wrap="false"
+      <a-col flex="100px"
         >{{ userStore.loginUser?.username ?? '未登录' }}
       </a-col>
     </a-row>
@@ -71,9 +71,8 @@ const handleMenuClick = ({ key }: { key: string }) => {
   position: relative;
 
   .logo {
-    position: absolute;
-    height: 100%;
-    width: 100%;
+    width: 150px;
+    height: 64px;
   }
 
   .menu-container {
